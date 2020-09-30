@@ -33,25 +33,37 @@
 
   <!-- Modal content -->
   <div class="modal-content">
-    <span class="close">&times;</span>
-    <h3>ثبت موقعیت مکانی</h3>
-    <hr>
-    <form action="" class="modal-form">
-      <label for="fname">مختصات :</label>
-      <input type="text" id="fname" name="lat" placeholder="عرض جغرافیایی">
-      <input type="text" id="fname" name="lng" placeholder="طول جغرافیایی">
-      <br>
-      <br>
-      <label for="fname">نام مکان :</label>
-      <input type="text" id="fname" name="title" placeholder="مثلا : دفتر مرکزی سون لرن">
-    </form>
+      <span class="close">&times;</span>
+      <h3>ثبت موقعیت مکانی</h3>
+      <hr>
+      <form id="addLocationForm" action="<?= site_url('process/addLocation.php') ?>" method="POST" class="modal-form">
+        <label for="fname">مختصات :</label>
+        <input type="text" name="lat" class="fname" id="lat-display" readonly>
+        <input type="text" name="lng" class="fname" id="lng-display" readonly>
+        <br>
+        <br>
+        <label for="fname">نام مکان :</label>
+        <input type="text" class="fname" id="l-title" name="title" style="width: 380px;" placeholder="مثلا : دفتر مرکزی سون لرن">
+        <br>
+        <br>
+        <label class="type" for="type">نوع مکان :</label>
+        <select name="type" class="fname" id="l-type">
+          <?php foreach(locationType as $key => $value): ?>
+            <option value="<?= $key ?>"><?= $value ?></option>
+          <?php endforeach; ?>
+        </select>
+        <br>
+        <br>
+        <button type="submit" class="button">ثبت مکان</button>
+        <div class="ajax-result"></div>
+      </form>
+    </div>
+
   </div>
 
-</div>
 
+  <script src="<?= BASE_URL ?>assets/js/jquery.min.js"></script>
+  <script src="<?= BASE_URL ?>assets/js/script.js"></script>
 
-<script src="<?= BASE_URL ?>assets/js/jquery.min.js"></script>
-<script src="<?= BASE_URL ?>assets/js/script.js"></script>
-  
 </body>
 </html>

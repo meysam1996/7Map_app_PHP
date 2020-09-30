@@ -26,10 +26,20 @@ document.getElementById('map').style.setProperty('height', window.innerHeight+ '
 // var southLine = mymap.getBounds().getSouth(); // Khat Jonobi
 // var eastLine = mymap.getBounds().getEast(); // Khat Sharghi
 
-// Use map Events
-// mymap.on('dblclick',function(event){
-// 	L.marker([event.latlng.lat,event.latlng.lng]).addTo(mymap);
-// });
+//Use map Events
+mymap.on('dblclick',function(event){
+	// 1 : add marker in clicked position
+	L.marker(event.latlng).addTo(mymap);
+	// 2 : open modal (form) for save the clicked location
+	$('.modal').fadeIn(500);
+	$('#lat-display').val(event.latlng.lat);
+	$('#lng-display').val(event.latlng.lng);
+	$('#l-title').val(''); // reset form title field
+	$('#l-type').val(0); // reset form type field
+	// 3 : done : fill the form and submit location data to server
+	// 4 : done : save location in database (status : pending review)
+	// 5 : review location and verify if OK
+});
 
 // setTimeout(function(){
 // 	mymap.setView([northLine,westLine],defaultZoom);
@@ -58,3 +68,23 @@ document.getElementById('map').style.setProperty('height', window.innerHeight+ '
 // 	locate();
 // });
 
+
+$(document).ready(function() {
+	$('form#addLocationForm').submit(function (e) {
+		e.preventDefault(); // prevent for submiting
+		var form = $(this);
+		var resultTag = form.find('.ajax-result');
+		$.ajax({
+			url : form.attr('action'),
+			method : form.attr('method'),
+			data : form.serialize(),
+			success : function (response) {
+				resultTag.html(response);
+			}
+		});
+	});
+
+	$('.modal .close').click(function() {
+	  $('.modal').fadeOut();
+	});
+  });
