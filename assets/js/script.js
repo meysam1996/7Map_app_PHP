@@ -34,8 +34,10 @@ mymap.on('dblclick',function(event){
 	$('.modal').fadeIn(500);
 	$('#lat-display').val(event.latlng.lat);
 	$('#lng-display').val(event.latlng.lng);
+
 	$('#l-title').val(''); // reset form title field
 	$('#l-type').val(0); // reset form type field
+	
 	// 3 : done : fill the form and submit location data to server
 	// 4 : done : save location in database (status : pending review)
 	// 5 : review location and verify if OK
