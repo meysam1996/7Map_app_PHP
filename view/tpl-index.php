@@ -64,6 +64,12 @@
 
   <script src="<?= BASE_URL ?>assets/js/jquery.min.js"></script>
   <script src="<?= BASE_URL ?>assets/js/script.js"></script>
+  <script>
+  <?php if ($location): ?>
+    var marker = L.marker([<?= $location->lat ?>,<?= $location->lng ?>]).addTo(mymap);
+    marker.bindPopup("<?= $location->title ?>").openPopup();
+  <?php endif; ?>
+  </script>
 
 </body>
 </html>
