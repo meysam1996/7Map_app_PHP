@@ -1,0 +1,16 @@
+{
+    "name": "meysam/7map",
+    "description": "this is 7Map project for exame.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Meysam Nosrati",
+            "email": "meysamna514@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "hekmatinasser/verta": "^1.11"
+    }
+}
